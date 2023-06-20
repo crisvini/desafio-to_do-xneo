@@ -298,13 +298,24 @@ table {
 
 .card-footer {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
     margin-top: 0.7rem;
 }
 
-.card-footer i {
+.card-footer-functions {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.card-footer-functions i {
     margin-left: 0.7rem;
+}
+
+.card-id {
+    color: #999999;
+    font-style: italic;
 }
 
 .column-header {

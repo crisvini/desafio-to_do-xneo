@@ -31,9 +31,14 @@
                     <span>We need to resolve this asap</span>
                 </div>
                 <div class="card-footer">
-                    <a class="link-1"><i class="bi bi-eye"></i></a>
-                    <a class="link-1"><i class="bi bi-pencil"></i></a>
-                    <a class="link-1"><i class="bi bi-trash"></i></a>
+                    <div>
+                        <span class="card-id"># 1</span>
+                    </div>
+                    <div class="card-footer-functions">
+                        <a id="view-1" class="link-1" onclick="viewTask({id: $(this).attr('id'), from: 'kanban'})"><i class="bi bi-eye"></i></a>
+                        <a id="edit-1" class="link-1" onclick="editTask({id: $(this).attr('id'), from: 'kanban'})"><i class="bi bi-pencil"></i></a>
+                        <a id="delete-1" class="link-1" onclick="deleteTask({id: $(this).attr('id'), from: 'kanban'})"><i class="bi bi-trash"></i></a>
+                    </div>
                 </div>
             </li>
         </ul>

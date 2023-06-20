@@ -1,38 +1,33 @@
 $(document).ready(function () {
-    var backlog = document.getElementById('backlog');
-    var to_do = document.getElementById('to_do');
-    var doing = document.getElementById('doing');
-    var done = document.getElementById('done');
-
-    var sortable1 = Sortable.create(backlog, {
+    Sortable.create(document.getElementById('backlog'), {
         group: 'shared-list',
         animation: 150,
         onAdd: function (evt) {
-            console.log('Item movido para a lista 1');
+            console.log('Item movido para a lista backlog');
         }
     });
 
-    var sortable2 = Sortable.create(to_do, {
+    Sortable.create(document.getElementById('to_do'), {
         group: 'shared-list',
         animation: 150,
         onAdd: function (evt) {
-            console.log('Item movido para a lista 1');
+            console.log('Item movido para a lista to_do');
         }
     });
 
-    var sortable3 = Sortable.create(doing, {
+    Sortable.create(document.getElementById('doing'), {
         group: 'shared-list',
         animation: 150,
         onAdd: function (evt) {
-            console.log('Item movido para a lista 2');
+            console.log('Item movido para a lista doing');
         }
     });
 
-    var sortable4 = Sortable.create(done, {
+    Sortable.create(document.getElementById('done'), {
         group: 'shared-list',
         animation: 150,
         onAdd: function (evt) {
-            console.log('Item movido para a lista 3');
+            console.log('Item movido para a lista done');
         }
     });
 });

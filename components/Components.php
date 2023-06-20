@@ -22,6 +22,7 @@ class Components
 
                 <link rel="stylesheet" href="./css/styles.css?' . time() . '">
                 <script src="./js/index.js?' . time() . '"></script>
+                <script src="./js/common.js?' . time() . '"></script>
                 <meta charset="UTF-8">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +38,7 @@ class Components
                     </div>
                 </div>
                 <div>
-                    <button class="button-1">See list</button>
+                    <button class="button-1"><i class="bi bi-list-task"></i>&nbsp;See list</button>
                 </div>
                 ';
     }
