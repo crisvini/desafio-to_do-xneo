@@ -180,6 +180,9 @@ table {
     padding-bottom: 1rem;
     padding-left: 2rem;
     padding-right: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
 }
 
 .kanban {
@@ -224,8 +227,24 @@ table {
     cursor: pointer;
 }
 
+.link-1 {
+    color: #003840;
+}
+
+.link-1:hover {
+    color: #02A676;
+    transition: color .15s ease-in-out;
+    cursor: pointer;
+}
+
+.link-1 i.bi.bi-trash:hover {
+    color: red;
+    transition: color .15s ease-in-out;
+    cursor: pointer;
+}
+
 .main {
-    height: 80vh;
+    height: 70vh;
     display: flex;
     overflow-x: auto;
     margin-left: 2rem;
@@ -277,6 +296,17 @@ table {
     font-size: 0.85rem;
 }
 
+.card-footer {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 0.7rem;
+}
+
+.card-footer i {
+    margin-left: 0.7rem;
+}
+
 .column-header {
     margin-bottom: 0.8rem;
     padding-top: 0.6rem;
@@ -319,4 +349,14 @@ table {
 
 .done span {
     color: #1C7723;
+}
+
+.grab {
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.grab:active {
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
 }

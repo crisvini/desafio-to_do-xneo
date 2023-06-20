@@ -4,29 +4,36 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Inclusão do head -->
 <?= Components::head('Home'); ?>
 
 <body class="background-6">
     <nav class="background-7 nav">
+        <!-- Inclusão da barra de navegação  -->
         <?= Components::nav('See list'); ?>
     </nav>
 
     <header class="header">
         <span class="text-8 fs-3">Tasks - <span class="kanban">Kanban board</span></span>
+        <button class="button-1"><i class="bi bi-plus-circle"></i>&nbsp;New task</button>
     </header>
-
 
     <main class="main background-7">
         <ul id="backlog" class="column">
             <div class="column-header backlog">
                 <span class="text-8"><i class="bi bi-journal"></i>&nbsp;Backlog</span>
             </div>
-            <li class="card">
+            <li class="card grab">
                 <div class="card-title">
                     <span class="text-3">SQL Injection prevention</span>
                 </div>
                 <div class="card-description">
-                    <span>We have to resolve this asap</span>
+                    <span>We need to resolve this asap</span>
+                </div>
+                <div class="card-footer">
+                    <a class="link-1"><i class="bi bi-eye"></i></a>
+                    <a class="link-1"><i class="bi bi-pencil"></i></a>
+                    <a class="link-1"><i class="bi bi-trash"></i></a>
                 </div>
             </li>
         </ul>
