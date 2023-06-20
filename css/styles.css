@@ -48,6 +48,24 @@ table {
     border-spacing: 0;
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #222;
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
+}
+
 .text-1 {
     color: #003840;
 }
@@ -204,4 +222,101 @@ table {
     border-color: #007369;
     transition: color .15s ease-in-out, border-color .15s ease-in-out;
     cursor: pointer;
+}
+
+.main {
+    height: 80vh;
+    display: flex;
+    overflow-x: auto;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.column {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.6rem;
+    overflow-y: auto;
+    width: 25%;
+}
+
+.card {
+    background-color: #f2f2f2;
+    margin-bottom: 0.6rem;
+    padding: 0.6rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.card-title {
+    border-bottom: 2px solid #007369;
+    padding-bottom: 0.2rem;
+    width: 100%;
+}
+
+.card-title span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.card-description {
+    margin-top: 0.6rem;
+}
+
+.card-description span {
+    font-size: 0.85rem;
+}
+
+.column-header {
+    margin-bottom: 0.8rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.3rem;
+}
+
+.column-header span {
+    font-weight: 500;
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.backlog {
+    border-bottom: 3px solid #384E77;
+}
+
+.backlog span {
+    color: #384E77;
+}
+
+.to-do {
+    border-bottom: 3px solid #771C1C;
+}
+
+.to-do span {
+    color: #771C1C;
+}
+
+.doing {
+    border-bottom: 3px solid #776B2C;
+}
+
+.doing span {
+    color: #776B2C;
+}
+
+.done {
+    border-bottom: 3px solid #1C7723;
+}
+
+.done span {
+    color: #1C7723;
 }

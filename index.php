@@ -15,22 +15,36 @@
         <span class="text-8 fs-3">Tasks - <span class="kanban">Kanban board</span></span>
     </header>
 
-    <main>
-        <div class="list-container">
-            <ul id="list1" class="shared-list">
-                <li data-id="1">Item 1</li>
-                <li data-id="2">Item 2</li>
-                <li data-id="3">Item 3</li>
-            </ul>
-        </div>
 
-        <div class="list-container">
-            <ul id="list2" class="shared-list">
-                <li data-id="4">Item 4</li>
-                <li data-id="5">Item 5</li>
-                <li data-id="6">Item 6</li>
-            </ul>
-        </div>
+    <main class="main background-7">
+        <ul id="backlog" class="column">
+            <div class="column-header backlog">
+                <span class="text-8"><i class="bi bi-journal"></i>&nbsp;Backlog</span>
+            </div>
+            <li class="card">
+                <div class="card-title">
+                    <span class="text-3">SQL Injection prevention</span>
+                </div>
+                <div class="card-description">
+                    <span>We have to resolve this asap</span>
+                </div>
+            </li>
+        </ul>
+        <ul id="to_do" class="column">
+            <div class="column-header to-do">
+                <span class="text-8"><i class="bi bi-list-task"></i>&nbsp;To do</span>
+            </div>
+        </ul>
+        <ul id="doing" class="column">
+            <div class="column-header doing">
+                <span class="text-8"><i class="bi bi-clock"></i>&nbsp;Doing</span>
+            </div>
+        </ul>
+        <ul id="done" class="column">
+            <div class="column-header done">
+                <span class="text-8"><i class="bi bi-check2-circle"></i>&nbsp;Done</span>
+            </div>
+        </ul>
     </main>
 </body>
 
