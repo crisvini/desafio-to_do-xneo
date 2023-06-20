@@ -17,11 +17,28 @@ class Components
                 <!-- datatables -->
                 <script src="./lib/node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
                 <link rel="stylesheet" type="text/css" href="./lib/node_modules/datatables.net-dt/css/jquery.dataTables.min.css">
-            
+                <!-- sortable -->
+                <script src="./lib/node_modules/sortablejs/sortable.min.js"></script>
+
                 <link rel="stylesheet" href="./css/styles.css?' . time() . '">
+                <script src="./js/index.js"></script>
                 <meta charset="UTF-8">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>' . $title . ' - ToDoList</title>';
+                <title>' . $title . ' - ToDo</title>';
+    }
+
+    public static function nav()
+    {
+        return '
+                <div class="nav-links">
+                    <div>
+                        <a href="/desafio-to_do-xneo" class="text-5 bold fs-2 logo">ToDo&nbsp;<i class="bi bi-card-checklist"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <button class="button-1">See list</button>
+                </div>
+                ';
     }
 }

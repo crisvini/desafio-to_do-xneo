@@ -116,10 +116,19 @@ table {
     width: 100%;
 }
 
-.header {
-    padding: 1rem;
+.nav {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: start;
     align-items: center;
 }
 
@@ -133,4 +142,66 @@ table {
 
 .fs-2 {
     font-size: 1.5rem;
+}
+
+.fs-3 {
+    font-size: 2rem;
+}
+
+.logo {
+    text-decoration: none;
+}
+
+.logo:hover {
+    color: #007369;
+    transition: color .15s ease-in-out, text-decoration .15s ease-in-out;
+}
+
+.header {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.kanban {
+    font-style: italic;
+}
+
+.horizontal-list {
+    list-style-type: none;
+    margin-left: 2rem;
+}
+
+.horizontal-list li {
+    display: inline;
+    margin-right: 0.7rem;
+}
+
+.horizontal-list li a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.horizontal-list li a:hover {
+    color: #007369;
+    transition: color .15s ease-in-out, text-decoration .15s ease-in-out;
+}
+
+.button-1 {
+    background-color: transparent;
+    border: 1px solid #02A676;
+    border-radius: 1rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    color: #02A676;
+}
+
+.button-1:hover {
+    color: #007369;
+    border-color: #007369;
+    transition: color .15s ease-in-out, border-color .15s ease-in-out;
+    cursor: pointer;
 }

@@ -13,5 +13,8 @@
     "datatables.net-dt": "^1.13.4",
     "jquery": "^3.7.0",
     "sweetalert2": "^11.7.12"
+  },
+  "devDependencies": {
+    "jquery-sortablejs": "^1.0.1"
   }
 }
