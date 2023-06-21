@@ -11,11 +11,6 @@ $(document).ready(function () {
 
     $(document).on('input', 'input.validate, textarea.validate', function () {
         validation($(this))
-        // if (validation()) {
-        //     console.log('validado');
-        // } else {
-        //     console.log('invalido');
-        // }
     });
 })
 
