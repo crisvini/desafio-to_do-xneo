@@ -1,34 +1,12 @@
 $(document).ready(function () {
     $('.edit-task').click(function () {
-        if ($(this).is('td')) {
-            const id = $(this).closest('tr').attr('id');
-            const from = $(this).closest('tr').attr('from');
-            console.log(id);
-            console.log(from);
-            editTask({ id: id, from: from });
-        } else {
-            const id = $(this).closest('li').attr('id');
-            const from = $(this).closest('li').attr('from');
-            console.log(id);
-            console.log(from);
-            editTask({ id: id, from: from });
-        }
+        if ($(this).is('td')) editTask({ id: $(this).closest('tr').attr('id'), from: $(this).closest('tr').attr('from') });
+        else editTask({ id: $(this).closest('li').attr('id'), from: $(this).closest('li').attr('from') });
     });
 
     $('.delete-task').click(function () {
-        if ($(this).is('td')) {
-            const id = $(this).closest('tr').attr('id');
-            const from = $(this).closest('tr').attr('from');
-            console.log(id);
-            console.log(from);
-            deleteTask({ id: id, from: from });
-        } else {
-            const id = $(this).closest('li').attr('id');
-            const from = $(this).closest('li').attr('from');
-            console.log(id);
-            console.log(from);
-            deleteTask({ id: id, from: from });
-        }
+        if ($(this).is('td')) deleteTask({ id: $(this).closest('tr').attr('id'), from: $(this).closest('tr').attr('from') });
+        else deleteTask({ id: $(this).closest('li').attr('id'), from: $(this).closest('li').attr('from') });
     });
 })
 
