@@ -2,7 +2,7 @@
 
 class Components
 {
-    public static function head($title)
+    public static function head($title, $page)
     {
         return '
                 <!-- jquery -->
@@ -20,8 +20,11 @@ class Components
                 <!-- sortable -->
                 <script src="./lib/node_modules/sortablejs/sortable.min.js"></script>
 
+                <link rel="stylesheet" href="./css/cleanHtml.css?' . time() . '">
+                <link rel="stylesheet" href="./css/swal2.css?' . time() . '">
+                ' . ($page == 'list' ? ('<link rel="stylesheet" href="./css/datatables.css?' . time() . '">') : '') . '
                 <link rel="stylesheet" href="./css/styles.css?' . time() . '">
-                <script src="./js/index.js?' . time() . '"></script>
+                <script src="./js/' . $page . '.js?' . time() . '"></script>
                 <script src="./js/common.js?' . time() . '"></script>
                 <meta charset="UTF-8">
                 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +32,7 @@ class Components
                 <title>' . $title . ' - ToDo</title>';
     }
 
-    public static function nav()
+    public static function nav($page, $buttonText)
     {
         return '
                 <div class="nav-links">
@@ -38,7 +41,7 @@ class Components
                     </div>
                 </div>
                 <div>
-                    <button class="button-1"><i class="bi bi-list-task"></i>&nbsp;See list</button>
+                    <button class="button-1" onclick="window.location.href=' . "'" . $page . "'" . '">' . $buttonText . '</button>
                 </div>
                 ';
     }

@@ -1,3 +1,37 @@
+$(document).ready(function () {
+    $('.edit-task').click(function () {
+        if ($(this).is('td')) {
+            const id = $(this).closest('tr').attr('id');
+            const from = $(this).closest('tr').attr('from');
+            console.log(id);
+            console.log(from);
+            editTask({ id: id, from: from });
+        } else {
+            const id = $(this).closest('li').attr('id');
+            const from = $(this).closest('li').attr('from');
+            console.log(id);
+            console.log(from);
+            editTask({ id: id, from: from });
+        }
+    });
+
+    $('.delete-task').click(function () {
+        if ($(this).is('td')) {
+            const id = $(this).closest('tr').attr('id');
+            const from = $(this).closest('tr').attr('from');
+            console.log(id);
+            console.log(from);
+            deleteTask({ id: id, from: from });
+        } else {
+            const id = $(this).closest('li').attr('id');
+            const from = $(this).closest('li').attr('from');
+            console.log(id);
+            console.log(from);
+            deleteTask({ id: id, from: from });
+        }
+    });
+})
+
 async function newTask({ from }) {
     await Swal.fire({
         title: `New task`,
@@ -8,10 +42,10 @@ async function newTask({ from }) {
                     <textarea class="custom-textarea" id="task_description" rows="10"></textarea>
                     <label class="custom-label" for="task_status">Status</label>
                     <select class="custom-select" id="task_status">
-                        <option class="backlog-option" value="1">Backlog</option>
-                        <option class="to-do-option" value="2">To do</option>
-                        <option class="doing-option" value="3">Doing</option>
-                        <option class="done-option" value="4">Done</option>
+                        <option class="backlog-text" value="1">Backlog</option>
+                        <option class="to-do-text" value="2">To do</option>
+                        <option class="doing-text" value="3">Doing</option>
+                        <option class="done-text" value="4">Done</option>
                     </select>
                 </div>`,
         focusConfirm: false,
@@ -43,10 +77,10 @@ async function editTask({ id, from }) {
                     <textarea class="custom-textarea" id="task_description" rows="10"></textarea>
                     <label class="custom-label" for="task_status">Status</label>
                     <select class="custom-select" id="task_status">
-                        <option class="backlog-option" value="1">Backlog</option>
-                        <option class="to-do-option" value="2">To do</option>
-                        <option class="doing-option" value="3">Doing</option>
-                        <option class="done-option" value="4">Done</option>
+                        <option class="backlog-text" value="1">Backlog</option>
+                        <option class="to-do-text" value="2">To do</option>
+                        <option class="doing-text" value="3">Doing</option>
+                        <option class="done-text" value="4">Done</option>
                     </select>
                 </div>`,
         focusConfirm: false,
