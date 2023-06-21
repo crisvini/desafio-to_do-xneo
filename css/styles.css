@@ -1,4 +1,4 @@
-html, body, div, span, applet, object, iframe,
+html, body, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -334,7 +334,7 @@ table {
     border-bottom: 3px solid #384E77;
 }
 
-.backlog span {
+.backlog span, .backlog-option {
     color: #384E77;
 }
 
@@ -342,7 +342,7 @@ table {
     border-bottom: 3px solid #771C1C;
 }
 
-.to-do span {
+.to-do span, .to-do-option {
     color: #771C1C;
 }
 
@@ -350,16 +350,16 @@ table {
     border-bottom: 3px solid #776B2C;
 }
 
-.doing span {
+.doing span, .doing-option {
     color: #776B2C;
 }
 
 .done {
-    border-bottom: 3px solid #1C7723;
+    border-bottom: 3px solid #02A676;
 }
 
-.done span {
-    color: #1C7723;
+.done span, .done-option {
+    color: #02A676;
 }
 
 .grab {
@@ -370,4 +370,114 @@ table {
 .grab:active {
     cursor: -webkit-grabbing;
     cursor: grabbing;
+}
+
+div:where(.swal2-container) div:where(.swal2-popup) {
+    background-color: #18181a !important;
+    border-radius: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+div:where(.swal2-icon).swal2-warning {
+    border-color: #776B2C !important;
+    color: #776B2C !important;
+}
+
+.swal2-title, .swal2-html-container {
+    color: #ffffff !important;
+}
+
+.swal2-title {
+    font-weight: normal !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    background-color: transparent;
+    border: 1px solid #02A676;
+    border-radius: 1rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: #02A676;
+}
+
+div:where(.swal2-container):hover button:where(.swal2-styled).swal2-confirm:hover {
+    color: #007369 !important;
+    border-color: #007369 !important;
+    transition: color .15s ease-in-out, border-color .15s ease-in-out !important;
+    cursor: pointer !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-deny {
+    background-color: transparent;
+    border: 1px solid #771C1C;
+    border-radius: 1rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: #771C1C;
+}
+
+div:where(.swal2-container):hover button:where(.swal2-styled).swal2-deny:hover {
+    color: #5c1616 !important;
+    border-color: #5c1616 !important;
+    transition: color .15s ease-in-out, border-color .15s ease-in-out !important;
+    cursor: pointer !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus,
+div:where(.swal2-container) button:where(.swal2-styled).swal2-deny:focus {
+    box-shadow: none !important;
+}
+
+.custom-actions {
+    width: 100% !important;
+    justify-content: end !important;
+    align-items: center !important;
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+    padding-bottom: 0px !important;
+}
+
+.custom-title {
+    text-align: start !important;
+}
+
+.custom-htmlContainer {
+    padding: 1em 1.6em 0.3em !important;
+    margin: 0px !important;
+}
+
+.custom-input, .custom-select, .custom-textarea {
+    display: inline-block;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #666;
+    border-radius: 1rem;
+    outline: none;
+    background-color: #333;
+    color: #fff;
+    margin-top: 0.2rem;
+    margin-bottom: 1rem;
+}
+
+.custom-textarea {
+    resize: none;
+}
+
+.custom-input:focus, .custom-textarea:focus, .custom-select:focus {
+    border-color: #02A676;
+    box-shadow: 0 0 0 0.2rem #007369;
+}
+
+.custom-label {
+    color: #ffffff;
+    text-align: start;
+}
+
+.edit-task-div {
+    display: flex;
+    flex-direction: column;
 }
