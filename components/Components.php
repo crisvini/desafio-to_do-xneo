@@ -22,7 +22,7 @@ class Components
 
                 <link rel="stylesheet" href="./css/cleanHtml.css?' . time() . '">
                 <link rel="stylesheet" href="./css/swal2.css?' . time() . '">
-                ' . ($page == 'list' ? ('<link rel="stylesheet" href="./css/datatables.css?' . time() . '">') : '') . '
+                ' . ($page == 'table' ? ('<link rel="stylesheet" href="./css/datatables.css?' . time() . '">') : '') . '
                 <link rel="stylesheet" href="./css/styles.css?' . time() . '">
                 <script src="./js/' . $page . '.js?' . time() . '"></script>
                 <script src="./js/common.js?' . time() . '"></script>

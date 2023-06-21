@@ -1,24 +1,24 @@
-<!-- Inclusão do arquivo de componentes -->
-<?php include_once './components/Components.php'; ?>
+<!-- Inclusão do arquivo de includes -->
+<?php include_once './includes/includes.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <!-- Inclusão do head -->
-<?= Components::head('List', 'list'); ?>
+<?= Components::head('Table', 'table'); ?>
 
 <body class="background-6">
     <nav class="background-7 nav">
         <!-- Inclusão da barra de navegação  -->
-        <?= Components::nav('/desafio-to_do-xneo', '<i class="bi bi-kanban"></i>&nbsp;See kanban'); ?>
+        <?= Components::nav('/desafio-to_do-xneo/kanban.php', '<i class="bi bi-kanban"></i>&nbsp;See kanban'); ?>
     </nav>
 
     <header class="header">
-        <span class="text-8 fs-3">Tasks - List</span>
-        <button class="button-1" onclick="newTask({from: 'list'})"><i class="bi bi-plus-circle"></i>&nbsp;New task</button>
+        <span class="text-8 fs-3">Tasks - Table</span>
+        <button class="button-1" onclick="newTask({from: 'table'})"><i class="bi bi-plus-circle"></i>&nbsp;New task</button>
     </header>
 
-    <main class="main-list background-7">
+    <main class="main-table background-7">
         <table class="w-100" id="task_table">
             <thead>
                 <tr>
@@ -32,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr id="1" from="list" class="pointer row">
+                <tr id="1" from="table" class="pointer row">
                     <td class="text-5 edit-task">1</td>
                     <td class="text-8 edit-task">SQL Injection preven...</td>
                     <td class="text-8 edit-task">We need to resolve t..</td>
@@ -41,7 +41,7 @@
                     <td class="text-8 edit-task">Not concluded</td>
                     <td class="text-8 delete-task"><i class="bi bi-trash"></i></td>
                 </tr>
-                <tr id="2" from="list" class="pointer row">
+                <tr id="2" from="table" class="pointer row">
                     <td class="text-5 edit-task">2</td>
                     <td class="text-8 edit-task">DDoS prevention</td>
                     <td class="text-8 edit-task">Another asap task</td>
@@ -50,7 +50,7 @@
                     <td class="text-8 edit-task">Not concluded</td>
                     <td class="text-8 delete-task"><i class="bi bi-trash"></i></td>
                 </tr>
-                <tr id="3" from="list" class="pointer row">
+                <tr id="3" from="table" class="pointer row">
                     <td class="text-5 edit-task">3</td>
                     <td class="text-8 edit-task">Create new logos</td>
                     <td class="text-8 edit-task">New logos on green</td>
@@ -59,7 +59,7 @@
                     <td class="text-8 edit-task">Not concluded</td>
                     <td class="text-8 delete-task"><i class="bi bi-trash"></i></td>
                 </tr>
-                <tr id="4" from="list" class="pointer row">
+                <tr id="4" from="table" class="pointer row">
                     <td class="text-5 edit-task">4</td>
                     <td class="text-8 edit-task">Change company name</td>
                     <td class="text-8 edit-task">Sugestions?</td>

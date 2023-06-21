@@ -1,5 +1,5 @@
-<!-- Inclusão do arquivo de componentes -->
-<?php include_once './components/Components.php'; ?>
+<!-- Inclusão do arquivo de includes -->
+<?php include_once './includes/includes.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,7 @@
 <body class="background-6">
     <nav class="background-7 nav">
         <!-- Inclusão da barra de navegação  -->
-        <?= Components::nav('list.php', '<i class="bi bi-list-task"></i>&nbsp;See list'); ?>
+        <?= Components::nav('table.php', '<i class="bi bi-list-task"></i>&nbsp;See table'); ?>
     </nav>
 
     <header class="header">

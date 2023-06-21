@@ -4,9 +4,28 @@ div:where(.swal2-container) div:where(.swal2-popup) {
     padding-bottom: 1rem !important;
 }
 
+div:where(.swal2-icon).swal2-info {
+    border-color: #384E77 !important;
+    color: #384E77 !important;
+}
+
+div:where(.swal2-icon).swal2-error {
+    border-color: #771C1C !important;
+    color: #771C1C !important;
+}
+
+div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left], div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right] {
+    background-color: #771C1C !important;
+}
+
 div:where(.swal2-icon).swal2-warning {
     border-color: #776B2C !important;
     color: #776B2C !important;
+}
+
+div:where(.swal2-icon).swal2-success {
+    border-color: #02A676 !important;
+    color: #02A676 !important;
 }
 
 .swal2-title, .swal2-html-container {
@@ -28,7 +47,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     color: #02A676;
 }
 
-div:where(.swal2-container):hover button:where(.swal2-styled).swal2-confirm:hover {
+div:where(.swal2-container):hover button:where(.swal2-styled).swal2-confirm:not([disabled]):hover {
     color: #007369 !important;
     border-color: #007369 !important;
     transition: color .15s ease-in-out, border-color .15s ease-in-out !important;

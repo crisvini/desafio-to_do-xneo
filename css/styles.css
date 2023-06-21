@@ -204,7 +204,7 @@ i.bi.bi-trash:hover {
     border-radius: 1rem;
 }
 
-.main-list {
+.main-table {
     height: 100%;
     display: flex;
     overflow-x: auto;
@@ -375,6 +375,11 @@ i.bi.bi-trash:hover {
 .custom-input:focus, .custom-textarea:focus, .custom-select:focus {
     border-color: #02A676;
     box-shadow: 0 0 0 0.2rem #007369;
+}
+
+.incorrect {
+    border: 2px solid red !important;
+    box-shadow: none !important;
 }
 
 .custom-label {
