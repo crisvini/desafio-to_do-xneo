@@ -53,7 +53,7 @@ async function createTask({ from }) {
                 },
                 success: function (result) {
                     result = JSON.parse(result);
-                    if (result.status !== 200) error({ code: result.status, message: result.message })
+                    if (result.status !== 200) error({ code: result.status, message: result.message });
                     else {
                         Swal.fire({
                             icon: 'success',
@@ -142,7 +142,7 @@ async function updateTask({ id, from }) {
                 },
                 success: function (result) {
                     result = JSON.parse(result);
-                    if (result.status !== 200) error({ code: result.status, message: result.message })
+                    if (result.status !== 200) error({ code: result.status, message: result.message });
                     else {
                         Swal.fire({
                             icon: 'success',

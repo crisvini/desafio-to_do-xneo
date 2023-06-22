@@ -18,6 +18,9 @@ switch ($_POST['method']) {
     case 'returnStatusOptions':
         Methods::returnStatusOptions($_POST['data']);
         break;
+    case 'updateStatusKanban':
+        Methods::updateStatusKanban($_POST['data']);
+        break;
     default:
         http_response_code(404);
         die();

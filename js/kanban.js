@@ -2,32 +2,32 @@ $(document).ready(function () {
     Sortable.create(document.getElementById('backlog'), {
         group: 'shared-list',
         animation: 150,
-        onAdd: function (evt) {
-            console.log('Item movido para a lista backlog');
+        onAdd: function (e) {
+            updateStatusKanban({ id: e.item.id, status_id: 1 });
         }
     });
 
     Sortable.create(document.getElementById('to_do'), {
         group: 'shared-list',
         animation: 150,
-        onAdd: function (evt) {
-            console.log('Item movido para a lista to_do');
+        onAdd: function (e) {
+            updateStatusKanban({ id: e.item.id, status_id: 2 });
         }
     });
 
     Sortable.create(document.getElementById('doing'), {
         group: 'shared-list',
         animation: 150,
-        onAdd: function (evt) {
-            console.log('Item movido para a lista doing');
+        onAdd: function (e) {
+            updateStatusKanban({ id: e.item.id, status_id: 3 });
         }
     });
 
     Sortable.create(document.getElementById('done'), {
         group: 'shared-list',
         animation: 150,
-        onAdd: function (evt) {
-            console.log('Item movido para a lista done');
+        onAdd: function (e) {
+            updateStatusKanban({ id: e.item.id, status_id: 4 });
         }
     });
 });
@@ -164,6 +164,25 @@ function updateKanban() {
             $('.column-header.to-do').after(toDoHtml);
             $('.column-header.doing').after(doingHtml);
             $('.column-header.done').after(doneHtml);
+        }
+    });
+}
+
+function updateStatusKanban({ id, status_id }) {
+    $.ajax({
+        type: 'POST',
+        url: './ajax/ajax.php',
+        data: {
+            'method': 'updateStatusKanban',
+            'data': {
+                'status_id': status_id,
+                'id': id.split("_").pop()
+            }
+        },
+        success: function (result) {
+            result = JSON.parse(result);
+            if (result.status !== 200) error({ code: result.status, message: result.message });
+            else updateKanban();
         }
     });
 }

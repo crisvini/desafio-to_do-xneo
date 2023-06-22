@@ -133,4 +133,21 @@ class Methods
         echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $selectHtmlOptions]);
         die();
     }
+
+    public static function updateStatusKanban($data)
+    {
+        $pdo = Db::openConnection();
+
+        try {
+            $task = $pdo->prepare("UPDATE tasks SET status_id = :status_id, concluded = '" . ($data['status_id'] == 4 ? date('Y-m-d H:i:s') : null) . "' WHERE id = :id");
+            $task->bindParam(':status_id', $data['status_id']);
+            $task->bindParam(':id', $data['id']);
+            $task->execute();
+        } catch (PDOException $e) {
+            echo json_encode(['status' => 500, 'message' => 'Internal Server Error', 'error' => $e]);
+            die();
+        }
+        echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null]);
+        die();
+    }
 }
