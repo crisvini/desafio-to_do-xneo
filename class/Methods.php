@@ -68,44 +68,14 @@ class Methods
             echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksData]);
             die();
         } else if ($data['ajax'] && $data['id']) {
+            $taskData['created'] = date('m/d/Y H:i', strtotime($taskData['created']));
+            if ($taskData['conclusion'] == '0000-00-00 00:00:00') $taskData['conclusion'] = null;
+            else $taskData['conclusion'] = date('m/d/Y H:i', strtotime($taskData['conclusion']));
             echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $taskData]);
             die();
         }
         return json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksData]);
         die();
-
-
-        // if ($data['from'] == 'kanban') {
-        //     $backlog = [];
-        //     $to_do = [];
-        //     $doing = [];
-        //     $done = [];
-
-        //     foreach ($tasksData as $key => $task) {
-        //         if ($task['status_id'] == 1) array_push($backlog, $task);
-        //         else if ($task['status_id'] == 2) array_push($to_do, $task);
-        //         else if ($task['status_id'] == 3) array_push($doing, $task);
-        //         else if ($task['status_id'] == 4) array_push($done, $task);
-        //     }
-
-        //     $tasksArray = ['backlog' => $backlog, 'to_do' => $to_do, 'doing' => $doing, 'done' => $done];
-
-        //     if ($data['ajax'] && !$data['id']) {
-        //         echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksArray]);
-        //         die();
-        //     } else if ($data['ajax'] && $data['id']) {
-        //     }
-        //     return json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksArray]);
-        //     die();
-        // } else if ($data['from'] == 'table') {
-        //     if ($data['ajax'] && !$data['id']) {
-        //         echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksData]);
-        //         die();
-        //     } else if ($data['ajax'] && $data['id']) {
-        //     }
-        //     return json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksData]);
-        //     die();
-        // }
     }
 
     public static function deleteTask($data)

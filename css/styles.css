@@ -410,3 +410,15 @@ i.bi.bi-trash:hover {
 .mt-1 {
     margin-top: 0.2rem;
 }
+
+.date-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+    text-align: start;
+}
+
+.date-div span {
+    color: #999999;
+    font-size: 1rem;
+}

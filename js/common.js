@@ -91,6 +91,9 @@ function readTask({ id, from }) {
             else {
                 $('#task_title').val(result.data.title);
                 $('#task_description').val(result.data.description);
+                $('#created').text('Created: ' + result.data.created);
+                if (result.data.conclusion)
+                    $('#created').after('<span class="mt-1">Concluded: ' + result.data.conclusion + '</span>');
                 returnStatusOptions(result.data.status_id);
             }
         }
@@ -108,6 +111,9 @@ async function updateTask({ id, from }) {
                     <label class="custom-label" for="task_status">Status</label>
                     <select class="custom-select" id="task_status">
                     </select>
+                    <div class="date-div">
+                        <span id="created"></span>
+                    </div>
                 </div>`,
         focusConfirm: false,
         showDenyButton: true,
@@ -154,7 +160,6 @@ function deleteTask({ id, from }) {
                 },
                 success: function (result) {
                     result = JSON.parse(result);
-                    console.log(result);
                     if (result.status !== 200) error({ code: result.status, message: result.message });
                     else {
                         if (from == 'table') location.reload();
