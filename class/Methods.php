@@ -5,7 +5,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 class Methods
 {
-    public static function newTask($data)
+    public static function createTask($data)
     {
         $pdo = Db::openConnection();
 

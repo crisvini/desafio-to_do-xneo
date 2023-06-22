@@ -1,7 +1,7 @@
 $(document).ready(function () {
-    $('.edit-task').click(function () {
-        if ($(this).is('td')) editTask({ id: $(this).closest('tr').attr('id'), from: $(this).closest('tr').attr('from') });
-        else editTask({ id: $(this).closest('li').attr('id'), from: $(this).closest('li').attr('from') });
+    $('.update-task').click(function () {
+        if ($(this).is('td')) updateTask({ id: $(this).closest('tr').attr('id'), from: $(this).closest('tr').attr('from') });
+        else updateTask({ id: $(this).closest('li').attr('id'), from: $(this).closest('li').attr('from') });
     });
 
     $('.delete-task').click(function () {
@@ -14,10 +14,10 @@ $(document).ready(function () {
     });
 })
 
-async function newTask({ from }) {
+async function createTask({ from }) {
     await Swal.fire({
         title: `New task`,
-        html: ` <div class="edit-task-div">
+        html: ` <div class="update-task-div">
                     <label class="custom-label" for="task_title">Title</label>
                     <input class="custom-input validate" id="task_title">
                     <label class="custom-label" for="task_description">Description</label>
@@ -47,7 +47,7 @@ async function newTask({ from }) {
                 type: 'POST',
                 url: './ajax/ajax.php',
                 data: {
-                    'method': 'newTask',
+                    'method': 'createTask',
                     'data': {
                         'title': $('#task_title').val(),
                         'description': $('#task_description').val(),
@@ -69,7 +69,7 @@ async function newTask({ from }) {
                             if (from == 'table') {
                                 location.reload();
                             } else {
-                                console.log('kanban');
+                                updateKanban();
                             }
                         });
                     }
@@ -79,10 +79,10 @@ async function newTask({ from }) {
     })
 }
 
-async function editTask({ id, from }) {
+async function updateTask({ id, from }) {
     await Swal.fire({
         title: `Edit task ${id}`,
-        html: ` <div class="edit-task-div">
+        html: ` <div class="update-task-div">
                     <label class="custom-label" for="task_title">Title</label>
                     <input class="custom-input validate" id="task_title">
                     <label class="custom-label" for="task_description">Description</label>

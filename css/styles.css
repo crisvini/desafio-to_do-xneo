@@ -398,7 +398,7 @@ i.bi.bi-trash:hover {
     text-align: start;
 }
 
-.edit-task-div {
+.update-task-div {
     display: flex;
     flex-direction: column;
 }

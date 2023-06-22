@@ -19,7 +19,7 @@ $tasks = json_decode(Methods::viewTasks('kanban'), true);
 
     <header class="header">
         <span class="text-8 fs-3">Tasks - <span class="kanban">Kanban board</span></span>
-        <button class="button-1" onclick="newTask({from: 'kanban'})"><i class="bi bi-plus-circle"></i>&nbsp;New task</button>
+        <button class="button-1" onclick="createTask({from: 'kanban'})"><i class="bi bi-plus-circle"></i>&nbsp;New task</button>
     </header>
 
     <main class="main background-7">
@@ -43,7 +43,7 @@ $tasks = json_decode(Methods::viewTasks('kanban'), true);
                             <span class="card-id"># <?= $task['id'] ?></span>
                         </div>
                         <div class="card-footer-functions">
-                            <a class="edit-task link-1"><i class="bi bi-pencil"></i></a>
+                            <a class="update-task link-1"><i class="bi bi-pencil"></i></a>
                             <a class="delete-task link-1"><i class="bi bi-trash"></i></a>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ $tasks = json_decode(Methods::viewTasks('kanban'), true);
                             <span class="card-id"># <?= $task['id'] ?></span>
                         </div>
                         <div class="card-footer-functions">
-                            <a class="edit-task link-1"><i class="bi bi-pencil"></i></a>
+                            <a class="update-task link-1"><i class="bi bi-pencil"></i></a>
                             <a class="delete-task link-1"><i class="bi bi-trash"></i></a>
                         </div>
                     </div>
@@ -97,7 +97,7 @@ $tasks = json_decode(Methods::viewTasks('kanban'), true);
                             <span class="card-id"># <?= $task['id'] ?></span>
                         </div>
                         <div class="card-footer-functions">
-                            <a class="edit-task link-1"><i class="bi bi-pencil"></i></a>
+                            <a class="update-task link-1"><i class="bi bi-pencil"></i></a>
                             <a class="delete-task link-1"><i class="bi bi-trash"></i></a>
                         </div>
                     </div>
@@ -125,7 +125,7 @@ $tasks = json_decode(Methods::viewTasks('kanban'), true);
                             <span class="card-id"># <?= $task['id'] ?></span>
                         </div>
                         <div class="card-footer-functions">
-                            <a class="edit-task link-1"><i class="bi bi-pencil"></i></a>
+                            <a class="update-task link-1"><i class="bi bi-pencil"></i></a>
                             <a class="delete-task link-1"><i class="bi bi-trash"></i></a>
                         </div>
                     </div>
