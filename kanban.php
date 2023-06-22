@@ -9,7 +9,7 @@ $tasks = json_decode(Methods::viewTasks('kanban'), true);
 <html lang="en">
 
 <!-- Inclusão do head -->
-<?= Components::head('Kanban', 'index'); ?>
+<?= Components::head('Kanban', 'kanban'); ?>
 
 <body class="background-6">
     <nav class="background-7 nav">
