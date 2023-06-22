@@ -13,12 +13,12 @@ USE `to_do`;
 CREATE TABLE IF NOT EXISTS `status` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `status_icon` varchar(50) NOT NULL,
-  `status_class` varchar(20) NOT NULL,
+  `icon` varchar(50) NOT NULL,
+  `class` varchar(20) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `status` (`id`, `name`, `status_icon`, `status_class`) VALUES
+INSERT INTO `status` (`id`, `name`, `icon`, `class`) VALUES
 	(1, 'Backlog', '<i class="bi bi-journal"></i>', 'backlog-text'),
 	(2, 'To do', '<i class="bi bi-list-task"></i>', 'to-do-text'),
 	(3, 'Doing', '<i class="bi bi-clock"></i>', 'doing-text'),

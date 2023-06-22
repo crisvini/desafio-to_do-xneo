@@ -37,9 +37,12 @@ function updateKanban() {
         type: 'POST',
         url: './ajax/ajax.php',
         data: {
-            'method': 'viewTasks',
-            'from': 'kanban',
-            'ajax': true
+            'method': 'readTask',
+            'data': {
+                'from': 'kanban',
+                'ajax': true,
+                'id': null
+            }
         },
         success: function (result) {
             var json = JSON.parse(result);

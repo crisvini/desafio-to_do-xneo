@@ -2,7 +2,7 @@
 // Inclusão do arquivo de includes
 include_once './includes/includes.php';
 
-$tasks = json_decode(Methods::viewTasks('kanban'), true);
+$tasks = json_decode(Methods::readTask(['from' => 'kanban', 'ajax' => null, 'id' => null]), true);
 ?>
 
 <!DOCTYPE html>

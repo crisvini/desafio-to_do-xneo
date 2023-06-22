@@ -10,7 +10,7 @@ $(document).ready(function () {
     });
 
     $(document).on('input', 'input.validate, textarea.validate', function () {
-        validation()
+        validation();
     });
 })
 
@@ -19,15 +19,11 @@ async function createTask({ from }) {
         title: `New task`,
         html: ` <div class="update-task-div">
                     <label class="custom-label" for="task_title">Title</label>
-                    <input class="custom-input validate" id="task_title">
+                    <input maxlength="255" class="custom-input validate" id="task_title">
                     <label class="custom-label" for="task_description">Description</label>
-                    <textarea class="custom-textarea validate" id="task_description" rows="10"></textarea>
+                    <textarea maxlength="65535" class="custom-textarea validate" id="task_description" rows="10"></textarea>
                     <label class="custom-label" for="task_status">Status</label>
                     <select class="custom-select" id="task_status">
-                        <option class="backlog-text" value="1">Backlog</option>
-                        <option class="to-do-text" value="2">To do</option>
-                        <option class="doing-text" value="3">Doing</option>
-                        <option class="done-text" value="4">Done</option>
                     </select>
                 </div>`,
         focusConfirm: false,
@@ -36,6 +32,7 @@ async function createTask({ from }) {
         denyButtonText: 'Cancel',
         willOpen: () => {
             validation(true);
+            returnStatusOptions();
         },
         customClass: {
             title: 'custom-title',
@@ -66,17 +63,38 @@ async function createTask({ from }) {
                             position: 'bottom-end',
                             timer: 2000,
                         }).then(() => {
-                            if (from == 'table') {
-                                location.reload();
-                            } else {
-                                updateKanban();
-                            }
+                            if (from == 'table') location.reload();
+                            else updateKanban();
                         });
                     }
                 }
             });
         }
-    })
+    });
+}
+
+function readTask({ id, from }) {
+    $.ajax({
+        type: 'POST',
+        url: './ajax/ajax.php',
+        data: {
+            'method': 'readTask',
+            'data': {
+                'from': from,
+                'ajax': true,
+                'id': id
+            }
+        },
+        success: function (result) {
+            result = JSON.parse(result);
+            if (result.status !== 200) error({ code: result.status, message: result.message });
+            else {
+                $('#task_title').val(result.data.title);
+                $('#task_description').val(result.data.description);
+                returnStatusOptions(result.data.status_id);
+            }
+        }
+    });
 }
 
 async function updateTask({ id, from }) {
@@ -84,15 +102,11 @@ async function updateTask({ id, from }) {
         title: `Edit task ${id.split("_").pop()}`,
         html: ` <div class="update-task-div">
                     <label class="custom-label" for="task_title">Title</label>
-                    <input class="custom-input validate" id="task_title">
+                    <input maxlength="255" class="custom-input validate" id="task_title">
                     <label class="custom-label" for="task_description">Description</label>
-                    <textarea class="custom-textarea validate" id="task_description" rows="10"></textarea>
+                    <textarea maxlength="65535" class="custom-textarea validate" id="task_description" rows="10"></textarea>
                     <label class="custom-label" for="task_status">Status</label>
                     <select class="custom-select" id="task_status">
-                        <option class="backlog-text" value="1">Backlog</option>
-                        <option class="to-do-text" value="2">To do</option>
-                        <option class="doing-text" value="3">Doing</option>
-                        <option class="done-text" value="4">Done</option>
                     </select>
                 </div>`,
         focusConfirm: false,
@@ -103,6 +117,10 @@ async function updateTask({ id, from }) {
             title: 'custom-title',
             actions: 'custom-actions',
             htmlContainer: 'custom-htmlContainer'
+        },
+        willOpen: () => {
+            validation(true);
+            readTask({ id: id.split("_").pop(), from: from });
         },
         preConfirm: () => {
             return [
@@ -137,13 +155,10 @@ function deleteTask({ id, from }) {
                 success: function (result) {
                     result = JSON.parse(result);
                     console.log(result);
-                    if (result.status !== 200) error({ code: result.status, message: result.message })
+                    if (result.status !== 200) error({ code: result.status, message: result.message });
                     else {
-                        if (from == 'table') {
-                            location.reload();
-                        } else {
-                            updateKanban();
-                        }
+                        if (from == 'table') location.reload();
+                        else updateKanban();
                     }
                 }
             });
@@ -164,11 +179,8 @@ function error({ code, message }) {
 function validation(button = false) {
     if (button) {
         $('.validate').each(function () {
-            if (!$(this).val()) {
-                $('.swal2-confirm').attr('disabled', 'disabled')
-            } else {
-                $('.swal2-confirm').removeAttr('disabled')
-            }
+            if (!$(this).val()) $('.swal2-confirm').attr('disabled', 'disabled')
+            else $('.swal2-confirm').removeAttr('disabled')
         });
     } else {
         $('.validate').each(function () {
@@ -182,4 +194,21 @@ function validation(button = false) {
         if ($('.incorrect').length == 0) $('.swal2-confirm').removeAttr('disabled');
         else $('.swal2-confirm').attr('disabled', 'disabled');
     }
+}
+
+function returnStatusOptions(status_id = null) {
+    $.ajax({
+        type: 'POST',
+        url: './ajax/ajax.php',
+        data: {
+            'method': 'returnStatusOptions',
+            'data': {
+                'status_id': status_id
+            }
+        },
+        success: function (result) {
+            result = JSON.parse(result);
+            $('#task_status').append(result.data);
+        }
+    });
 }

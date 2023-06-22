@@ -23,53 +23,89 @@ class Methods
             echo json_encode(['status' => 500, 'message' => 'Internal Server Error', 'error' => $e]);
             die();
         }
-
         echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null]);
         die();
     }
 
-    public static function viewTasks($from, $ajax = false)
+    public static function readTask($data)
+    // public static function readTask($from, $ajax = null, $id = null)
     {
         $pdo = Db::openConnection();
 
         try {
-            $tasks = $pdo->prepare("SELECT t.id, t.title, t.description, t.created, t.conclusion, t.status_id, s.name status, s.status_icon, s.status_class FROM tasks t JOIN status s ON t.status_id = s.id ORDER BY status_id");
-            $tasks->execute();
-            $tasksData = $tasks->fetchAll(PDO::FETCH_ASSOC);
+            if ($data['id']) {
+                $task = $pdo->prepare("SELECT t.id, t.title, t.description, t.created, t.conclusion, t.status_id, s.name status, s.icon, s.class FROM tasks t JOIN status s ON t.status_id = s.id WHERE t.id = :id ORDER BY status_id");
+                $task->bindParam(':id', $data['id']);
+                $task->execute();
+                $taskData = $task->fetch(PDO::FETCH_ASSOC);
+            } else {
+                $tasks = $pdo->prepare("SELECT t.id, t.title, t.description, t.created, t.conclusion, t.status_id, s.name status, s.icon, s.class FROM tasks t JOIN status s ON t.status_id = s.id ORDER BY status_id");
+                $tasks->execute();
+                $tasksData = $tasks->fetchAll(PDO::FETCH_ASSOC);
+
+                if ($data['from'] == 'kanban') {
+                    $backlog = [];
+                    $to_do = [];
+                    $doing = [];
+                    $done = [];
+
+                    foreach ($tasksData as $key => $task) {
+                        if ($task['status_id'] == 1) array_push($backlog, $task);
+                        else if ($task['status_id'] == 2) array_push($to_do, $task);
+                        else if ($task['status_id'] == 3) array_push($doing, $task);
+                        else if ($task['status_id'] == 4) array_push($done, $task);
+                    }
+
+                    $tasksData = ['backlog' => $backlog, 'to_do' => $to_do, 'doing' => $doing, 'done' => $done];
+                }
+            }
         } catch (PDOException $e) {
             echo json_encode(['status' => 500, 'message' => 'Internal Server Error', 'error' => $e]);
             die();
         }
 
-        if ($from == 'kanban') {
-            $backlog = [];
-            $to_do = [];
-            $doing = [];
-            $done = [];
-
-            foreach ($tasksData as $key => $task) {
-                if ($task['status_id'] == 1) array_push($backlog, $task);
-                else if ($task['status_id'] == 2) array_push($to_do, $task);
-                else if ($task['status_id'] == 3) array_push($doing, $task);
-                else if ($task['status_id'] == 4) array_push($done, $task);
-            }
-
-            $tasksArray = ['backlog' => $backlog, 'to_do' => $to_do, 'doing' => $doing, 'done' => $done];
-
-            if ($ajax) {
-                echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksArray]);
-                die();
-            }
-            return json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksArray]);
+        if ($data['ajax'] && !$data['id']) {
+            echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksData]);
             die();
-        } else if ($from == 'table') {
-            if ($ajax) {
-                echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksData]);
-                die();
-            }
-            return json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksData]);
+        } else if ($data['ajax'] && $data['id']) {
+            echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $taskData]);
             die();
         }
+        return json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksData]);
+        die();
+
+
+        // if ($data['from'] == 'kanban') {
+        //     $backlog = [];
+        //     $to_do = [];
+        //     $doing = [];
+        //     $done = [];
+
+        //     foreach ($tasksData as $key => $task) {
+        //         if ($task['status_id'] == 1) array_push($backlog, $task);
+        //         else if ($task['status_id'] == 2) array_push($to_do, $task);
+        //         else if ($task['status_id'] == 3) array_push($doing, $task);
+        //         else if ($task['status_id'] == 4) array_push($done, $task);
+        //     }
+
+        //     $tasksArray = ['backlog' => $backlog, 'to_do' => $to_do, 'doing' => $doing, 'done' => $done];
+
+        //     if ($data['ajax'] && !$data['id']) {
+        //         echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksArray]);
+        //         die();
+        //     } else if ($data['ajax'] && $data['id']) {
+        //     }
+        //     return json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksArray]);
+        //     die();
+        // } else if ($data['from'] == 'table') {
+        //     if ($data['ajax'] && !$data['id']) {
+        //         echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksData]);
+        //         die();
+        //     } else if ($data['ajax'] && $data['id']) {
+        //     }
+        //     return json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksData]);
+        //     die();
+        // }
     }
 
     public static function deleteTask($data)
@@ -77,15 +113,36 @@ class Methods
         $pdo = Db::openConnection();
 
         try {
-            $stmt = $pdo->prepare("DELETE FROM tasks WHERE id = :id");
-            $stmt->bindParam(':id', $data['id']);
-            $stmt->execute();
+            $delete = $pdo->prepare("DELETE FROM tasks WHERE id = :id");
+            $delete->bindParam(':id', $data['id']);
+            $delete->execute();
         } catch (PDOException $e) {
             echo json_encode(['status' => 500, 'message' => 'Internal Server Error', 'error' => $e]);
             die();
         }
 
         echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null]);
+        die();
+    }
+
+    public static function returnStatusOptions($data)
+    {
+        $pdo = Db::openConnection();
+
+        try {
+            $status = $pdo->prepare("SELECT * FROM status");
+            $status->execute();
+            $statusData = $status->fetchAll(PDO::FETCH_ASSOC);
+
+            $selectHtmlOptions = '';
+
+            if ($data['status_id']) foreach ($statusData as $key => $status) $selectHtmlOptions .= '<option class="' . $status['class'] . '" value="' . $status['id'] . '"' . ($status['id'] == $data['status_id'] ? ' selected' : '') . '>' . $status['name'] . '</option>';
+            else foreach ($statusData as $key => $status) $selectHtmlOptions .= '<option class="' . $status['class'] . '" value="' . $status['id'] . '">' . $status['name'] . '</option>';
+        } catch (PDOException $e) {
+            echo json_encode(['status' => 500, 'message' => 'Internal Server Error', 'error' => $e]);
+            die();
+        }
+        echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $selectHtmlOptions]);
         die();
     }
 }
