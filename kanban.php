@@ -1,5 +1,9 @@
-<!-- Inclusão do arquivo de includes -->
-<?php include_once './includes/includes.php'; ?>
+<?php
+// Inclusão do arquivo de includes
+include_once './includes/includes.php';
+
+$tasks = json_decode(Methods::viewTasks('kanban'), true);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,89 +27,110 @@
             <div class="column-header backlog">
                 <span><i class="bi bi-journal"></i>&nbsp;Backlog</span>
             </div>
-            <li class="card grab" id="1" from="kanban">
-                <div class="card-title">
-                    <span class="text-3">SQL Injection prevention</span>
-                </div>
-                <div class="card-description">
-                    <span>We need to resolve this asap</span>
-                </div>
-                <div class="card-footer">
-                    <div>
-                        <span class="card-id"># 1</span>
+            <?php foreach ($tasks['data']['backlog'] as $key => $task) { ?>
+                <li class="card grab" id="task_<?= $task['id'] ?>" from="kanban">
+                    <div class="card-title">
+                        <span class="text-3"><?= $task['title'] ?></span>
                     </div>
-                    <div class="card-footer-functions">
-                        <a id="1" class="edit-task link-1"><i class="bi bi-pencil"></i></a>
-                        <a id="1" class="delete-task link-1"><i class="bi bi-trash"></i></a>
+                    <div class="card-description">
+                        <span><?= $task['description'] ?></span>
                     </div>
-                </div>
-            </li>
+                    <div class="card-date">
+                        <span>Created: <?= date('m/d/Y H:i', strtotime($task['created'])) ?></span>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="card-id"># <?= $task['id'] ?></span>
+                        </div>
+                        <div class="card-footer-functions">
+                            <a class="edit-task link-1"><i class="bi bi-pencil"></i></a>
+                            <a class="delete-task link-1"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </div>
+                </li>
+            <?php } ?>
         </ul>
         <ul id="to_do" class="column">
             <div class="column-header to-do">
                 <span><i class="bi bi-list-task"></i>&nbsp;To do</span>
             </div>
-            <li class="card grab" id="2" from="kanban">
-                <div class="card-title">
-                    <span class="text-3">DDoS prevention</span>
-                </div>
-                <div class="card-description">
-                    <span>Another asap task</span>
-                </div>
-                <div class="card-footer">
-                    <div>
-                        <span class="card-id"># 2</span>
+            <?php foreach ($tasks['data']['to_do'] as $key => $task) { ?>
+                <li class="card grab" id="task_<?= $task['id'] ?>" from="kanban">
+                    <div class="card-title">
+                        <span class="text-3"><?= $task['title'] ?></span>
                     </div>
-                    <div class="card-footer-functions">
-                        <a id="1" class="edit-task link-1"><i class="bi bi-pencil"></i></a>
-                        <a id="1" class="delete-task link-1"><i class="bi bi-trash"></i></a>
+                    <div class="card-description">
+                        <span><?= $task['description'] ?></span>
                     </div>
-                </div>
-            </li>
+                    <div class="card-date">
+                        <span>Created: <?= date('m/d/Y H:i', strtotime($task['created'])) ?></span>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="card-id"># <?= $task['id'] ?></span>
+                        </div>
+                        <div class="card-footer-functions">
+                            <a class="edit-task link-1"><i class="bi bi-pencil"></i></a>
+                            <a class="delete-task link-1"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </div>
+                </li>
+            <?php } ?>
         </ul>
         <ul id="doing" class="column">
             <div class="column-header doing">
                 <span><i class="bi bi-clock"></i>&nbsp;Doing</span>
             </div>
-            <li class="card grab" id="3" from="kanban">
-                <div class="card-title">
-                    <span class="text-3">Create new logos</span>
-                </div>
-                <div class="card-description">
-                    <span>New logos on green</span>
-                </div>
-                <div class="card-footer">
-                    <div>
-                        <span class="card-id"># 3</span>
+            <?php foreach ($tasks['data']['doing'] as $key => $task) { ?>
+                <li class="card grab" id="task_<?= $task['id'] ?>" from="kanban">
+                    <div class="card-title">
+                        <span class="text-3"><?= $task['title'] ?></span>
                     </div>
-                    <div class="card-footer-functions">
-                        <a id="1" class="edit-task link-1"><i class="bi bi-pencil"></i></a>
-                        <a id="1" class="delete-task link-1"><i class="bi bi-trash"></i></a>
+                    <div class="card-description">
+                        <span><?= $task['description'] ?></span>
                     </div>
-                </div>
-            </li>
+                    <div class="card-date">
+                        <span>Created: <?= date('m/d/Y H:i', strtotime($task['created'])) ?></span>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="card-id"># <?= $task['id'] ?></span>
+                        </div>
+                        <div class="card-footer-functions">
+                            <a class="edit-task link-1"><i class="bi bi-pencil"></i></a>
+                            <a class="delete-task link-1"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </div>
+                </li>
+            <?php } ?>
         </ul>
         <ul id="done" class="column">
             <div class="column-header done">
                 <span><i class="bi bi-check2-circle"></i>&nbsp;Done</span>
             </div>
-            <li class="card grab" id="4" from="kanban">
-                <div class="card-title">
-                    <span class="text-3">Change company name</span>
-                </div>
-                <div class="card-description">
-                    <span>Sugestions?</span>
-                </div>
-                <div class="card-footer">
-                    <div>
-                        <span class="card-id"># 4</span>
+            <?php foreach ($tasks['data']['done'] as $key => $task) { ?>
+                <li class="card grab" id="task_<?= $task['id'] ?>" from="kanban">
+                    <div class="card-title">
+                        <span class="text-3"><?= $task['title'] ?></span>
                     </div>
-                    <div class="card-footer-functions">
-                        <a id="1" class="edit-task link-1"><i class="bi bi-pencil"></i></a>
-                        <a id="1" class="delete-task link-1"><i class="bi bi-trash"></i></a>
+                    <div class="card-description">
+                        <span><?= $task['description'] ?></span>
                     </div>
-                </div>
-            </li>
+                    <div class="card-date">
+                        <span>Created: <?= date('m/d/Y H:i', strtotime($task['created'])) ?></span>
+                        <span class="mt-1">Concluded: <?= date('m/d/Y H:i', strtotime($task['conclusion'])) ?></span>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="card-id"># <?= $task['id'] ?></span>
+                        </div>
+                        <div class="card-footer-functions">
+                            <a class="edit-task link-1"><i class="bi bi-pencil"></i></a>
+                            <a class="delete-task link-1"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </div>
+                </li>
+            <?php } ?>
         </ul>
     </main>
 </body>

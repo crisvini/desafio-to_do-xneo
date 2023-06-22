@@ -54,6 +54,10 @@ div:where(.swal2-container):hover button:where(.swal2-styled).swal2-confirm:not(
     cursor: pointer !important;
 }
 
+div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover {
+    background-image: none !important;
+}
+
 div:where(.swal2-container) button:where(.swal2-styled).swal2-deny {
     background-color: transparent;
     border: 1px solid #771C1C;

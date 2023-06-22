@@ -10,7 +10,7 @@ $(document).ready(function () {
     });
 
     $(document).on('input', 'input.validate, textarea.validate', function () {
-        validation($(this))
+        validation()
     });
 })
 
@@ -35,7 +35,7 @@ async function newTask({ from }) {
         confirmButtonText: 'Create',
         denyButtonText: 'Cancel',
         willOpen: () => {
-            $('.swal2-confirm').attr('disabled', 'disabled');
+            validation(true);
         },
         customClass: {
             title: 'custom-title',
@@ -84,9 +84,9 @@ async function editTask({ id, from }) {
         title: `Edit task ${id}`,
         html: ` <div class="edit-task-div">
                     <label class="custom-label" for="task_title">Title</label>
-                    <input class="custom-input" id="task_title">
+                    <input class="custom-input validate" id="task_title">
                     <label class="custom-label" for="task_description">Description</label>
-                    <textarea class="custom-textarea" id="task_description" rows="10"></textarea>
+                    <textarea class="custom-textarea validate" id="task_description" rows="10"></textarea>
                     <label class="custom-label" for="task_status">Status</label>
                     <select class="custom-select" id="task_status">
                         <option class="backlog-text" value="1">Backlog</option>
@@ -117,7 +117,7 @@ async function editTask({ id, from }) {
 function deleteTask({ id, from }) {
     Swal.fire({
         icon: 'warning',
-        title: `Are you shure you want to delete task ${id}?`,
+        title: `Are you shure you want to delete task ${id.slice(-1)}?`,
         showDenyButton: true,
         confirmButtonText: 'Yes',
         denyButtonText: 'Cancel',
@@ -139,15 +139,25 @@ function error({ code, message }) {
     });
 }
 
-function validation(element) {
-    $('.validate').each(function () {
-        if (!$(this).val()) {
-            if ($(this).hasClass('validate')) $(this).addClass('incorrect');
-        } else {
-            if ($(this).hasClass('validate')) $(this).removeClass('incorrect');
-        }
-    });
+function validation(button = false) {
+    if (button) {
+        $('.validate').each(function () {
+            if (!$(this).val()) {
+                $('.swal2-confirm').attr('disabled', 'disabled')
+            } else {
+                $('.swal2-confirm').removeAttr('disabled')
+            }
+        });
+    } else {
+        $('.validate').each(function () {
+            if (!$(this).val()) {
+                if ($(this).hasClass('validate')) $(this).addClass('incorrect');
+            } else {
+                if ($(this).hasClass('validate')) $(this).removeClass('incorrect');
+            }
+        });
 
-    if ($('.incorrect').length == 0) $('.swal2-confirm').removeAttr('disabled');
-    else $('.swal2-confirm').attr('disabled', 'disabled');
+        if ($('.incorrect').length == 0) $('.swal2-confirm').removeAttr('disabled');
+        else $('.swal2-confirm').attr('disabled', 'disabled');
+    }
 }
