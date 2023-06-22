@@ -71,4 +71,21 @@ class Methods
             die();
         }
     }
+
+    public static function deleteTask($data)
+    {
+        $pdo = Db::openConnection();
+
+        try {
+            $stmt = $pdo->prepare("DELETE FROM tasks WHERE id = :id");
+            $stmt->bindParam(':id', $data['id']);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo json_encode(['status' => 500, 'message' => 'Internal Server Error', 'error' => $e]);
+            die();
+        }
+
+        echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null]);
+        die();
+    }
 }

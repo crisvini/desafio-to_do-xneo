@@ -81,7 +81,7 @@ async function createTask({ from }) {
 
 async function updateTask({ id, from }) {
     await Swal.fire({
-        title: `Edit task ${id.slice(-1)}`,
+        title: `Edit task ${id.split("_").pop()}`,
         html: ` <div class="update-task-div">
                     <label class="custom-label" for="task_title">Title</label>
                     <input class="custom-input validate" id="task_title">
@@ -117,14 +117,36 @@ async function updateTask({ id, from }) {
 function deleteTask({ id, from }) {
     Swal.fire({
         icon: 'warning',
-        title: `Are you shure you want to delete task ${id.slice(-1)}?`,
+        title: `Are you shure you want to delete task ${id.split("_").pop()}?`,
         showDenyButton: true,
         confirmButtonText: 'Yes',
         denyButtonText: 'Cancel',
         position: 'bottom-end'
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire('Saved!', '', 'success')
+            $.ajax({
+                type: 'POST',
+                url: './ajax/ajax.php',
+                data: {
+                    'method': 'deleteTask',
+                    'data': {
+                        'id': id.split("_").pop(),
+                        'from': from
+                    }
+                },
+                success: function (result) {
+                    result = JSON.parse(result);
+                    console.log(result);
+                    if (result.status !== 200) error({ code: result.status, message: result.message })
+                    else {
+                        if (from == 'table') {
+                            location.reload();
+                        } else {
+                            updateKanban();
+                        }
+                    }
+                }
+            });
         }
     });
 }
