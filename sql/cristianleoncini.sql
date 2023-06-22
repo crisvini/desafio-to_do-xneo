@@ -30,13 +30,13 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `description` text NOT NULL,
   `status_id` int(11) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT current_timestamp(),
-  `conclusion` datetime DEFAULT NULL,
+  `concluded` datetime DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   KEY `id` (`status_id`) USING BTREE,
   CONSTRAINT `status_id` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `tasks` (`id`, `title`, `description`, `status_id`, `created`, `conclusion`) VALUES
+INSERT INTO `tasks` (`id`, `title`, `description`, `status_id`, `created`, `concluded`) VALUES
 	(1, 'Testing a new task', 'se uma task esta concluida e é movida para outro status, a data de conclusao deve ser vazia', 1, '2023-06-21 20:38:40', '0000-00-00 00:00:00'),
 	(2, 'to do', 'to do', 2, '2023-06-21 20:50:42', '0000-00-00 00:00:00'),
 	(3, 'doing', 'doing', 3, '2023-06-21 20:50:50', '0000-00-00 00:00:00'),

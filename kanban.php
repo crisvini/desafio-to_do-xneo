@@ -118,7 +118,7 @@ $tasks = json_decode(Methods::readTask(['from' => 'kanban', 'ajax' => null, 'id'
                     </div>
                     <div class="card-date">
                         <span>Created: <?= date('m/d/Y H:i', strtotime($task['created'])) ?></span>
-                        <span class="mt-1">Concluded: <?= date('m/d/Y H:i', strtotime($task['conclusion'])) ?></span>
+                        <span class="mt-1">Concluded: <?= date('m/d/Y H:i', strtotime($task['concluded'])) ?></span>
                     </div>
                     <div class="card-footer">
                         <div>

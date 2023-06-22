@@ -80,3 +80,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus,
 div:where(.swal2-container) button:where(.swal2-styled).swal2-deny:focus {
     box-shadow: none !important;
 }
+
+div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active {
+    background-image: none !important;
+}

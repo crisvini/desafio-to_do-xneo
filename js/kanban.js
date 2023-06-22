@@ -143,7 +143,7 @@ function updateKanban() {
                                                 </div>
                                                 <div class="card-date">
                                                     <span>Created: ${new Date(task.created).toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "numeric" }) + " " + new Date(task.created).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })}</span>
-                                                    <span class="mt-1">Concluded: ${new Date(task.conclusion).toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "numeric" }) + " " + new Date(task.conclusion).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })}</span>
+                                                    <span class="mt-1">Concluded: ${new Date(task.concluded).toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "numeric" }) + " " + new Date(task.concluded).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })}</span>
                                                 </div>
                                                 <div class="card-footer">
                                                     <div>

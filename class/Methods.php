@@ -14,7 +14,7 @@ class Methods
         $status_id = $data['status_id'];
 
         try {
-            $tasks = $pdo->prepare('INSERT INTO tasks (title, description, status_id, conclusion) VALUES (:title, :description, :status_id, "' . ($status_id == 4 ? date('Y-m-d H:i:s') : null) . '")');
+            $tasks = $pdo->prepare('INSERT INTO tasks (title, description, status_id, concluded) VALUES (:title, :description, :status_id, "' . ($status_id == 4 ? date('Y-m-d H:i:s') : null) . '")');
             $tasks->bindParam(':title', $title);
             $tasks->bindParam(':description', $description);
             $tasks->bindParam(':status_id', $status_id);
@@ -28,18 +28,17 @@ class Methods
     }
 
     public static function readTask($data)
-    // public static function readTask($from, $ajax = null, $id = null)
     {
         $pdo = Db::openConnection();
 
         try {
             if ($data['id']) {
-                $task = $pdo->prepare("SELECT t.id, t.title, t.description, t.created, t.conclusion, t.status_id, s.name status, s.icon, s.class FROM tasks t JOIN status s ON t.status_id = s.id WHERE t.id = :id ORDER BY status_id");
+                $task = $pdo->prepare("SELECT t.id, t.title, t.description, t.created, t.concluded, t.status_id, s.name status, s.icon, s.class FROM tasks t JOIN status s ON t.status_id = s.id WHERE t.id = :id ORDER BY status_id");
                 $task->bindParam(':id', $data['id']);
                 $task->execute();
                 $taskData = $task->fetch(PDO::FETCH_ASSOC);
             } else {
-                $tasks = $pdo->prepare("SELECT t.id, t.title, t.description, t.created, t.conclusion, t.status_id, s.name status, s.icon, s.class FROM tasks t JOIN status s ON t.status_id = s.id ORDER BY status_id");
+                $tasks = $pdo->prepare("SELECT t.id, t.title, t.description, t.created, t.concluded, t.status_id, s.name status, s.icon, s.class FROM tasks t JOIN status s ON t.status_id = s.id ORDER BY status_id");
                 $tasks->execute();
                 $tasksData = $tasks->fetchAll(PDO::FETCH_ASSOC);
 
@@ -69,12 +68,31 @@ class Methods
             die();
         } else if ($data['ajax'] && $data['id']) {
             $taskData['created'] = date('m/d/Y H:i', strtotime($taskData['created']));
-            if ($taskData['conclusion'] == '0000-00-00 00:00:00') $taskData['conclusion'] = null;
-            else $taskData['conclusion'] = date('m/d/Y H:i', strtotime($taskData['conclusion']));
+            if ($taskData['concluded'] == '0000-00-00 00:00:00') $taskData['concluded'] = null;
+            else $taskData['concluded'] = date('m/d/Y H:i', strtotime($taskData['concluded']));
             echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $taskData]);
             die();
         }
         return json_encode(['status' => 200, 'message' => 'OK', 'error' => null, 'data' => $tasksData]);
+        die();
+    }
+
+    public static function updateTask($data)
+    {
+        $pdo = Db::openConnection();
+
+        try {
+            $task = $pdo->prepare("UPDATE tasks SET title = :title, description = :description, status_id = :status_id, concluded = '" . ($data['status_id'] == 4 ? date('Y-m-d H:i:s') : null) . "' WHERE id = :id");
+            $task->bindParam(':title', $data['title']);
+            $task->bindParam(':description', $data['description']);
+            $task->bindParam(':status_id', $data['status_id']);
+            $task->bindParam(':id', $data['id']);
+            $task->execute();
+        } catch (PDOException $e) {
+            echo json_encode(['status' => 500, 'message' => 'Internal Server Error', 'error' => $e]);
+            die();
+        }
+        echo json_encode(['status' => 200, 'message' => 'OK', 'error' => null]);
         die();
     }
 

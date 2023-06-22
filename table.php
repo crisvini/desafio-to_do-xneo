@@ -31,7 +31,7 @@ $tasks = json_decode(Methods::readTask(['from' => 'table', 'ajax' => null, 'id' 
                     <th scope="col" class="text-3">description</th>
                     <th scope="col" class="text-3">status</th>
                     <th scope="col" class="text-3">created</th>
-                    <th scope="col" class="text-3">conclusion</th>
+                    <th scope="col" class="text-3">concluded</th>
                     <th scope="col" class="text-3">delete</th>
                 </tr>
             </thead>
@@ -43,7 +43,7 @@ $tasks = json_decode(Methods::readTask(['from' => 'table', 'ajax' => null, 'id' 
                         <td class="text-8 update-task"><?= strlen($task['description']) > 20 ? (substr($task['description'], 0, 20) . '...') : $task['description'] ?></td>
                         <td class="<?= $task['class'] ?> update-task"><?= $task['icon'] ?>&nbsp;<?= $task['status'] ?></td>
                         <td class="text-8 update-task"><?= date('m/d/Y H:i', strtotime($task['created'])) ?></td>
-                        <td class="text-8 update-task"><?= strtotime($task['conclusion']) > strtotime("0000-00-00 00:00:00") ? date('m/d/Y H:i', strtotime($task['conclusion'])) : 'Not concluded' ?></td>
+                        <td class="text-8 update-task"><?= strtotime($task['concluded']) > strtotime("0000-00-00 00:00:00") ? date('m/d/Y H:i', strtotime($task['concluded'])) : 'Not concluded' ?></td>
                         <td class="text-8 delete-task"><i class="bi bi-trash"></i></td>
                     </tr>
                 <?php } ?>

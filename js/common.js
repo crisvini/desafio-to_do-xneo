@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.update-task').click(function () {
+    $(document).on('click', '.update-task', function () {
         if ($(this).is('td')) updateTask({ id: $(this).closest('tr').attr('id'), from: $(this).closest('tr').attr('from') });
         else updateTask({ id: $(this).closest('li').attr('id'), from: $(this).closest('li').attr('from') });
     });
@@ -92,8 +92,8 @@ function readTask({ id, from }) {
                 $('#task_title').val(result.data.title);
                 $('#task_description').val(result.data.description);
                 $('#created').text('Created: ' + result.data.created);
-                if (result.data.conclusion)
-                    $('#created').after('<span class="mt-1">Concluded: ' + result.data.conclusion + '</span>');
+                if (result.data.concluded)
+                    $('#created').after('<span class="mt-1">Concluded: ' + result.data.concluded + '</span>');
                 returnStatusOptions(result.data.status_id);
             }
         }
@@ -125,15 +125,39 @@ async function updateTask({ id, from }) {
             htmlContainer: 'custom-htmlContainer'
         },
         willOpen: () => {
-            validation(true);
             readTask({ id: id.split("_").pop(), from: from });
         },
         preConfirm: () => {
-            return [
-                $('#task_title').val(),
-                $('#task_description').val(),
-                $('#task_status').val()
-            ]
+            $.ajax({
+                type: 'POST',
+                url: './ajax/ajax.php',
+                data: {
+                    'method': 'updateTask',
+                    'data': {
+                        'title': $('#task_title').val(),
+                        'description': $('#task_description').val(),
+                        'status_id': $('#task_status').val(),
+                        'id': id.split("_").pop()
+                    }
+                },
+                success: function (result) {
+                    result = JSON.parse(result);
+                    if (result.status !== 200) error({ code: result.status, message: result.message })
+                    else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Task updated with success!',
+                            showConfirmButton: false,
+                            position: 'bottom-end',
+                            timer: 2000,
+                        }).then(() => {
+                            if (from == 'table') location.reload();
+                            else updateKanban();
+                        });
+                    }
+                }
+            });
         }
     })
 }
