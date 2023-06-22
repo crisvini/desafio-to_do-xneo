@@ -4,7 +4,7 @@ $(document).ready(function () {
         else updateTask({ id: $(this).closest('li').attr('id'), from: $(this).closest('li').attr('from') });
     });
 
-    $('.delete-task').click(function () {
+    $(document).on('click', '.delete-task', function () {
         if ($(this).is('td')) deleteTask({ id: $(this).closest('tr').attr('id'), from: $(this).closest('tr').attr('from') });
         else deleteTask({ id: $(this).closest('li').attr('id'), from: $(this).closest('li').attr('from') });
     });
@@ -81,7 +81,7 @@ async function createTask({ from }) {
 
 async function updateTask({ id, from }) {
     await Swal.fire({
-        title: `Edit task ${id}`,
+        title: `Edit task ${id.slice(-1)}`,
         html: ` <div class="update-task-div">
                     <label class="custom-label" for="task_title">Title</label>
                     <input class="custom-input validate" id="task_title">
