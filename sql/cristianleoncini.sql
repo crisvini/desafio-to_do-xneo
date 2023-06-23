@@ -34,18 +34,31 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `id` (`status_id`) USING BTREE,
   CONSTRAINT `status_id` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `tasks` (`id`, `title`, `description`, `status_id`, `created`, `concluded`) VALUES
-	(1, 'Testing a new task', 'se uma task esta concluida e é movida para outro status, a data de conclusao deve ser vazia', 1, '2023-06-21 20:38:40', '0000-00-00 00:00:00'),
-	(2, 'to do', 'to do', 2, '2023-06-21 20:50:42', '0000-00-00 00:00:00'),
-	(3, 'doing', 'doing', 3, '2023-06-21 20:50:50', '0000-00-00 00:00:00'),
-	(4, 'done', 'done', 4, '2023-06-21 20:50:58', '2023-06-21 20:50:58'),
-	(6, 'Gerar novo sql', 'gerar novo sql antes de enviar', 1, '2023-06-21 22:21:59', '0000-00-00 00:00:00'),
-	(10, 'ao mover task concluida', 'ao mover task concluida para outro status e vice e versa, deve ser removida e adicionada a data de conclusao da mesma\n', 1, '2023-06-21 23:30:29', '0000-00-00 00:00:00'),
-	(11, 'adicionar limitacao de caracteres', 'deve ser adicionado uma limitacao de caracteres para os campos do modal\n', 1, '2023-06-21 23:30:55', '0000-00-00 00:00:00'),
-	(12, 'fixar o header do kanban', 'se poss&iacute;vel, deixar fixo o header do kanban', 1, '2023-06-21 23:31:28', '0000-00-00 00:00:00'),
-	(14, 'criar task nova', 'ao criar uma nova task no kanban e n&atilde;o recarregar a p&aacute;gina, a fun&ccedil;&atilde;o de dele&ccedil;&atilde;o n&atilde;o funciona', 1, '2023-06-21 23:41:09', '0000-00-00 00:00:00');
+	(1, 'teste', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.asdas', 4, '2023-06-22 22:04:57', '2023-06-22 22:12:11'),
+	(2, 'gerar novo dump', 'gerar novo dump como dados ficticios', 1, '2023-06-22 22:05:18', '0000-00-00 00:00:00'),
+	(3, 'comentar o c&oacute;digo', 'comentar o c&oacute;digo\n', 4, '2023-06-22 22:05:29', '2023-06-22 22:11:45'),
+	(4, 'gravar v&iacute;deo', 'gravar v&iacute;deo', 1, '2023-06-22 22:05:37', '0000-00-00 00:00:00'),
+	(6, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 2, '2023-06-22 22:05:58', '0000-00-00 00:00:00'),
+	(7, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 3, '2023-06-22 22:05:58', '0000-00-00 00:00:00'),
+	(8, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 2, '2023-06-22 22:05:58', '0000-00-00 00:00:00'),
+	(9, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 2, '2023-06-22 22:05:58', '0000-00-00 00:00:00'),
+	(10, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 2, '2023-06-22 22:05:58', '0000-00-00 00:00:00'),
+	(11, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 2, '2023-06-22 22:05:58', '0000-00-00 00:00:00'),
+	(12, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 4, '2023-06-22 22:05:58', '2023-06-22 22:07:35'),
+	(13, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 3, '2023-06-22 22:05:58', '0000-00-00 00:00:00'),
+	(14, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 4, '2023-06-22 22:05:58', '2023-06-22 22:11:35'),
+	(15, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 3, '2023-06-22 22:05:58', '0000-00-00 00:00:00'),
+	(16, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 3, '2023-06-22 22:05:58', '0000-00-00 00:00:00'),
+	(17, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 2, '2023-06-22 22:05:58', '0000-00-00 00:00:00'),
+	(18, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 3, '2023-06-22 22:05:58', '0000-00-00 00:00:00'),
+	(19, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 4, '2023-06-22 22:05:58', '2023-06-22 22:10:10'),
+	(20, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 4, '2023-06-22 22:05:58', '2023-06-22 22:10:02'),
+	(21, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 4, '2023-06-22 22:05:58', '2023-06-22 22:10:01'),
+	(22, 'Lorem ipsum dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sapien justo, placerat ut consequat id, imperdiet sit amet lorem. Duis.', 4, '2023-06-22 22:05:58', '2023-06-22 22:10:12'),
+	(24, 'teste1', 'rt', 4, '2023-06-22 22:09:21', '2023-06-22 22:09:27');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

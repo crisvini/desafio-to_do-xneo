@@ -28,6 +28,14 @@ div:where(.swal2-icon).swal2-success {
     color: #02A676 !important;
 }
 
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
+    border: 0.25em solid #02A676 !important;
+}
+
+div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+    background-color: #02A676 !important;
+}
+
 .swal2-title, .swal2-html-container {
     color: #ffffff !important;
 }

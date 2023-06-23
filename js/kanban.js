@@ -52,10 +52,10 @@ function updateKanban() {
             var doingHtml = '';
             var doneHtml = '';
 
-            $('.column-header.backlog').nextAll().remove();
-            $('.column-header.to-do').nextAll().remove();
-            $('.column-header.doing').nextAll().remove();
-            $('.column-header.done').nextAll().remove();
+            $('#backlog').empty();
+            $('#to_do').empty();
+            $('#doing').empty();
+            $('#done').empty();
 
             for (var key in json.data) {
                 if (json.data.hasOwnProperty(key)) {
@@ -159,10 +159,10 @@ function updateKanban() {
                     }
                 }
             }
-            $('.column-header.backlog').after(backlogHtml);
-            $('.column-header.to-do').after(toDoHtml);
-            $('.column-header.doing').after(doingHtml);
-            $('.column-header.done').after(doneHtml);
+            $('#backlog').append(backlogHtml);
+            $('#to_do').append(toDoHtml);
+            $('#doing').append(doingHtml);
+            $('#done').append(doneHtml);
         }
     });
 }

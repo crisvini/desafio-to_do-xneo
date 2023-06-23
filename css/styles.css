@@ -224,8 +224,12 @@ i.bi.bi-trash:hover {
     margin-right: 1rem;
     margin-top: 0.6rem;
     margin-bottom: 0.6rem;
-    overflow-y: auto;
     width: 25%;
+}
+
+.column ul {
+    overflow-y: auto;
+    height: 100%;
 }
 
 .card {
