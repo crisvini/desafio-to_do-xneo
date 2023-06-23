@@ -90,8 +90,8 @@ function readTask({ id, from }) {
             result = JSON.parse(result);
             if (result.status !== 200) error({ code: result.status, message: result.message });
             else {
-                $('#task_title').val(result.data.title);
-                $('#task_description').val(result.data.description);
+                $('#task_title').val(decodeEntities(result.data.title));
+                $('#task_description').val(decodeEntities(result.data.description));
                 $('#created').text('Created: ' + result.data.created);
                 if (result.data.concluded) $('#created').after('<span class="mt-1">Concluded: ' + result.data.concluded + '</span>');
                 returnStatusOptions(result.data.status_id);
@@ -242,4 +242,10 @@ function returnStatusOptions(status_id = null) {
             $('#task_status').append(result.data);
         }
     });
+}
+
+function decodeEntities(encodedString) {
+    var textArea = document.createElement('textarea');
+    textArea.innerHTML = encodedString;
+    return textArea.value;
 }
