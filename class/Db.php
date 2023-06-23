@@ -1,5 +1,6 @@
 <?php
 
+// Classe de conexão com o banco de dados
 class Db
 {
     public static function openConnection()

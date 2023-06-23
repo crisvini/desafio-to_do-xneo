@@ -1,4 +1,7 @@
+// Esse arquivo possui funções específicas da tela kanban
+
 $(document).ready(function () {
+    // Inicialização da biblioteca sortable.js
     Sortable.create(document.getElementById('backlog'), {
         group: 'shared-list',
         animation: 150,
@@ -32,6 +35,7 @@ $(document).ready(function () {
     });
 });
 
+// Função que atualiza o quadro de kanban
 function updateKanban() {
     $.ajax({
         type: 'POST',
@@ -167,6 +171,7 @@ function updateKanban() {
     });
 }
 
+// Função que é chamada quando um card é movido de um status para outro no kanban
 function updateStatusKanban({ id, status_id }) {
     $.ajax({
         type: 'POST',

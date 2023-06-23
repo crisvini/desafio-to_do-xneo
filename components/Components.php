@@ -1,5 +1,6 @@
 <?php
 
+// Nesse arquivo ficam os componentes, que são funções com htmls usados várias vezes dentro do projeto
 class Components
 {
     public static function head($title, $page)

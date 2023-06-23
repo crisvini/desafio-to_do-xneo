@@ -3,8 +3,10 @@
 include_once 'Db.php';
 date_default_timezone_set('America/Sao_Paulo');
 
+// Nesse arquivo, ficam todos os métodos necessários para a comunicação do frontend com o backend
 class Methods
 {
+    // Criação de task
     public static function createTask($data)
     {
         $pdo = Db::openConnection();
@@ -27,6 +29,7 @@ class Methods
         die();
     }
 
+    // Retorna os dados das tasks ou task, dependendo de onde foi chamado
     public static function readTask($data)
     {
         $pdo = Db::openConnection();
@@ -77,6 +80,7 @@ class Methods
         die();
     }
 
+    // Atualiza uma task
     public static function updateTask($data)
     {
         $pdo = Db::openConnection();
@@ -96,6 +100,7 @@ class Methods
         die();
     }
 
+    // Deleta uma task
     public static function deleteTask($data)
     {
         $pdo = Db::openConnection();
@@ -113,6 +118,7 @@ class Methods
         die();
     }
 
+    // Retorna os options do select de status
     public static function returnStatusOptions($data)
     {
         $pdo = Db::openConnection();
@@ -134,6 +140,7 @@ class Methods
         die();
     }
 
+    // Atualiza o status da task quando um card do kanban é movido para outro status
     public static function updateStatusKanban($data)
     {
         $pdo = Db::openConnection();

@@ -1,3 +1,6 @@
+// Nesse arquivo estão funções que são usadas em mais de uma tela
+// Os ajax desse js, chamam o arquivo ajax.php, que se comunica com o Methods.php, que por sequência realiza as interações com o banco de dados
+
 $(document).ready(function () {
     $(document).on('click', '.update-task', function () {
         if ($(this).is('td')) updateTask({ id: $(this).closest('tr').attr('id'), from: $(this).closest('tr').attr('from') });
@@ -14,6 +17,7 @@ $(document).ready(function () {
     });
 })
 
+// Função para criar tasks
 async function createTask({ from }) {
     await Swal.fire({
         title: `New task`,
@@ -74,6 +78,7 @@ async function createTask({ from }) {
     });
 }
 
+// Função para retornar os dados das tasks quando o modal de edição é aberto
 function readTask({ id, from }) {
     $.ajax({
         type: 'POST',
@@ -90,8 +95,8 @@ function readTask({ id, from }) {
             result = JSON.parse(result);
             if (result.status !== 200) error({ code: result.status, message: result.message });
             else {
-                $('#task_title').val(decodeEntities(result.data.title));
-                $('#task_description').val(decodeEntities(result.data.description));
+                $('#task_title').val($('<div/>').html(result.data.title).text());
+                $('#task_description').val($('<div/>').html(result.data.description).text());
                 $('#created').text('Created: ' + result.data.created);
                 if (result.data.concluded) $('#created').after('<span class="mt-1">Concluded: ' + result.data.concluded + '</span>');
                 returnStatusOptions(result.data.status_id);
@@ -100,6 +105,7 @@ function readTask({ id, from }) {
     });
 }
 
+// Função para atualizar uma task
 async function updateTask({ id, from }) {
     await Swal.fire({
         title: `Edit task ${id.split("_").pop()}`,
@@ -163,6 +169,7 @@ async function updateTask({ id, from }) {
     })
 }
 
+// Função para deletar uma task
 function deleteTask({ id, from }) {
     Swal.fire({
         icon: 'warning',
@@ -197,6 +204,7 @@ function deleteTask({ id, from }) {
     });
 }
 
+// Função para padronizar o modal de erro
 function error({ code, message }) {
     Swal.fire({
         icon: 'error',
@@ -207,6 +215,7 @@ function error({ code, message }) {
     });
 }
 
+// Função para validar se os inputs estão preenchidos
 function validation(button = false) {
     if (button) {
         $('.validate').each(function () {
@@ -227,6 +236,7 @@ function validation(button = false) {
     }
 }
 
+// Função que insere as options de status no select
 function returnStatusOptions(status_id = null) {
     $.ajax({
         type: 'POST',
@@ -242,10 +252,4 @@ function returnStatusOptions(status_id = null) {
             $('#task_status').append(result.data);
         }
     });
-}
-
-function decodeEntities(encodedString) {
-    var textArea = document.createElement('textarea');
-    textArea.innerHTML = encodedString;
-    return textArea.value;
 }

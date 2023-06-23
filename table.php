@@ -2,6 +2,7 @@
 // Inclusão do arquivo de includes
 include_once './includes/includes.php';
 
+// Método que retorna as tasks
 $tasks = json_decode(Methods::readTask(['from' => 'table', 'ajax' => null, 'id' => null]), true);
 ?>
 

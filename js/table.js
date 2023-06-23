@@ -1,4 +1,7 @@
+// Esse arquivo possui funções específicas da tela table
+
 $(document).ready(function () {
+    // Inicialização da tabela usando a biblioteca datatables.js
     $('#task_table').DataTable({
         "lengthChange": false,
         "pageLength": 15,
@@ -7,6 +10,7 @@ $(document).ready(function () {
     });
 });
 
+// Função que atualiza os dados da tabela
 function updateTable() {
     $.ajax({
         type: 'POST',

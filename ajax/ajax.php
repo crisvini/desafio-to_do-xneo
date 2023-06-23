@@ -2,6 +2,7 @@
 
 include_once '../class/Methods.php';
 
+// Esse arquivo tem a função de receber as chamadas ajax, e na sequência, chamar os métodos do backend
 switch ($_POST['method']) {
     case 'createTask':
         Methods::createTask($_POST['data']);
