@@ -37,7 +37,7 @@ class Components
         return '
                 <div class="nav-links">
                     <div>
-                        <a href="/desafio-to_do-xneo" class="text-5 bold fs-2 logo">ToDo&nbsp;<i class="bi bi-card-checklist"></i></a>
+                        <a href="/desafio-to_do-xneo/kanban.php" class="text-5 bold fs-2 logo">ToDo&nbsp;<i class="bi bi-card-checklist"></i></a>
                     </div>
                 </div>
                 <div>

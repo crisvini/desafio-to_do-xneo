@@ -52,17 +52,16 @@ function updateKanban() {
             var doingHtml = '';
             var doneHtml = '';
 
-            $('.column-header.backlog').nextAll().remove()
-            $('.column-header.to-do').nextAll().remove()
-            $('.column-header.doing').nextAll().remove()
-            $('.column-header.done').nextAll().remove()
+            $('.column-header.backlog').nextAll().remove();
+            $('.column-header.to-do').nextAll().remove();
+            $('.column-header.doing').nextAll().remove();
+            $('.column-header.done').nextAll().remove();
 
             for (var key in json.data) {
                 if (json.data.hasOwnProperty(key)) {
                     var tasks = json.data[key];
                     for (var i = 0; i < tasks.length; i++) {
                         var task = tasks[i];
-
                         if (task.status_id == 1) {
                             backlogHtml += `
                                                 <li class="card grab" id="task_${task.id}" from="kanban">

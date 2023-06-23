@@ -63,7 +63,8 @@ async function createTask({ from }) {
                             position: 'bottom-end',
                             timer: 2000,
                         }).then(() => {
-                            if (from == 'table') location.reload();
+                            // if (from == 'table') location.reload();
+                            if (from == 'table') updateTable();
                             else updateKanban();
                         });
                     }
@@ -92,8 +93,7 @@ function readTask({ id, from }) {
                 $('#task_title').val(result.data.title);
                 $('#task_description').val(result.data.description);
                 $('#created').text('Created: ' + result.data.created);
-                if (result.data.concluded)
-                    $('#created').after('<span class="mt-1">Concluded: ' + result.data.concluded + '</span>');
+                if (result.data.concluded) $('#created').after('<span class="mt-1">Concluded: ' + result.data.concluded + '</span>');
                 returnStatusOptions(result.data.status_id);
             }
         }
@@ -152,7 +152,8 @@ async function updateTask({ id, from }) {
                             position: 'bottom-end',
                             timer: 2000,
                         }).then(() => {
-                            if (from == 'table') location.reload();
+                            // if (from == 'table') location.reload();
+                            if (from == 'table') updateTable();
                             else updateKanban();
                         });
                     }
@@ -186,7 +187,8 @@ function deleteTask({ id, from }) {
                     result = JSON.parse(result);
                     if (result.status !== 200) error({ code: result.status, message: result.message });
                     else {
-                        if (from == 'table') location.reload();
+                        // if (from == 'table') location.reload();
+                        if (from == 'table') updateTable();
                         else updateKanban();
                     }
                 }

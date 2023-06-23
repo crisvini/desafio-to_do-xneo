@@ -22,7 +22,7 @@ $tasks = json_decode(Methods::readTask(['from' => 'table', 'ajax' => null, 'id' 
         <button class="button-1" onclick="createTask({from: 'table'})"><i class="bi bi-plus-circle"></i>&nbsp;New task</button>
     </header>
 
-    <main class="main-table background-7">
+    <main class="main-table background-7" id="main_table">
         <table class="w-100" id="task_table">
             <thead>
                 <tr>
